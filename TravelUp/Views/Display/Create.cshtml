@@ -1,0 +1,58 @@
+﻿@model WebAPI.Models.Segment
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+
+
+<h4>Segment</h4>
+<hr />
+@using(Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="test">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FlightNumber" class="control-label"></label>
+                    <input asp-for="FlightNumber" class="form-control" />
+                    <span asp-validation-for="FlightNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DepartureCity" class="control-label"></label>
+                    <select asp-for="DepartureCity" class="form-control" asp-items="ViewBag.DepartureCity"><option disabled selected>-SELECT CITY-</option></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ArrivalCity" class="control-label"></label>
+                    <select asp-for="ArrivalCity" class="form-control" asp-items="ViewBag.ArrivalCity"><option disabled selected>-SELECT CITY-</option></select>
+                </div>
+                @Html.ValidationMessage("CityValidation", new { @style = "color:red" })
+                <div class="form-group">
+                    <label asp-for="DepartureTime" class="control-label"></label>
+                    <input asp-for="DepartureTime" class="form-control" />
+                    <span asp-validation-for="DepartureTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ArrivalTime" class="control-label"></label>
+                    <input asp-for="ArrivalTime" class="form-control" />
+                    <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+<div>
+        <a asp-action="Segments">Back to List</a>
+</div>
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

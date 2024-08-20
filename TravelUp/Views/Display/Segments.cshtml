@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebAPI.Models.Segment>
+
+@{
+    ViewData["Title"] = "Segments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Segments</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SegmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightNumber)
+            </th>
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SegmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber)
+            </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartureCityNavigation.CityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalCityNavigation.CityName)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.SegmentId}) |
+                @Html.ActionLink("Passanger Details", "PassangerDetails", new { id=item.SegmentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SegmentId }, new { onclick = "return confirm('Are you sure you wish to delete the segment?');" })
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
